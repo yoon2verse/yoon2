@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>민준 ♥ 서연 결혼합니다</title>
+<!-- 카톡·인스타 링크 미리보기 (배포 주소가 정해지면 SITE 부분을 바꾸세요) -->
+<meta name="description" content="2026년 11월 21일, 픽셀 예식장에 캐릭터로 들어와 축하를 남겨주세요">
+<meta property="og:type" content="website">
+<meta property="og:title" content="민준 ♥ 서연 결혼합니다">
+<meta property="og:description" content="2026.11.21 SAT · 픽셀 예식장에 캐릭터로 들어와 축하를 남겨주세요">
+<meta property="og:image" content="https://SITE/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://SITE/">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Gowun+Dodum&display=swap">
+<style>
+/* Layout: one full-screen pixel hall (9:16) letterboxed in wine, menu bottom-right, sheets slide up */
+:root{
+  --ink:#2a1a20; --wine:#7d1e2c; --ivory:#fbf5ec; --gold:#c9a24a; --blush:#f2b6c3; --line:#e6d6c4;
+  --pixel:"DotGothic16","Gowun Dodum",system-ui,sans-serif;
+  --body:"Gowun Dodum",system-ui,sans-serif;
+  color-scheme:light;
+}
+html,body{height:100%;margin:0}
+body{background:#2a1a20;color:var(--ink);font-family:var(--body);overflow:hidden}
+#stage{position:fixed;inset:0;display:block;width:100%;height:100%;touch-action:manipulation}
+.top{position:fixed;left:0;right:0;top:0;padding:calc(env(safe-area-inset-top,0px) + 10px) max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));display:flex;justify-content:center;pointer-events:none;transition:opacity .8s}
+.badge{font-family:var(--pixel);background:rgba(42,26,32,.82);color:var(--ivory);padding:6px 14px;border-radius:999px;font-size:13px;letter-spacing:.06em;border:1px solid rgba(201,162,74,.6)}
+.fab{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:flex-end;gap:10px;transition:opacity .8s}
+.fab button{font-family:var(--pixel);border:2px solid var(--gold);background:var(--wine);color:var(--ivory);border-radius:14px;padding:12px 18px;font-size:16px;cursor:pointer;box-shadow:0 4px 0 #3e0d16}
+.fab button:active{transform:translateY(2px);box-shadow:0 2px 0 #3e0d16}
+.fab .toggle{width:58px;height:58px;border-radius:50%;padding:0;font-size:24px}
+.fab .item{display:none}
+.fab.open .item{display:block}
+.intro-on .top,.intro-on .fab{opacity:0;pointer-events:none}
+.skip{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));font-family:var(--pixel);font-size:14px;color:var(--ivory);background:rgba(42,26,32,.7);border:1px solid rgba(201,162,74,.6);border-radius:999px;padding:8px 16px;cursor:pointer}
+.card{position:fixed;left:50%;top:30%;transform:translate(-50%,-50%) scale(.96);text-align:center;font-family:var(--pixel);color:var(--wine);background:rgba(251,245,236,.94);border:3px solid var(--gold);border-radius:18px;padding:16px 26px 14px;box-shadow:0 6px 0 rgba(62,13,22,.35);opacity:0;transition:opacity .7s,transform .7s;pointer-events:none;white-space:nowrap}
+.card.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.card h1{margin:0;font-size:30px;font-weight:400;letter-spacing:.04em}
+.card h1 span{color:#d9566b}
+.card p{margin:6px 0 0;font-size:15px;color:var(--ink)}
+.card .date{margin:0 0 6px;font-size:13px;color:#9a6a3a;letter-spacing:.08em}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.sheet{position:fixed;inset:0;background:rgba(20,10,14,.55);display:flex;align-items:flex-end;justify-content:center;z-index:20}
+.sheet[hidden]{display:none}
+.panel{background:var(--ivory);width:100%;max-width:480px;max-height:86%;overflow:auto;border-radius:20px 20px 0 0;border-top:3px solid var(--gold);padding-block:18px calc(22px + env(safe-area-inset-bottom,0px));padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px));box-sizing:border-box}
+.panel h2{font-family:var(--pixel);font-size:20px;margin:0 0 12px;color:var(--wine);display:flex;justify-content:space-between;align-items:center;text-wrap:balance}
+.x{background:none;border:0;font-size:22px;cursor:pointer;color:var(--ink)}
+.row{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+label,.lbl{font-size:13px;font-weight:700}
+input,textarea{font:inherit;font-size:16px;padding:10px 12px;border:2px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);width:100%;box-sizing:border-box}
+textarea{resize:none;height:70px}
+.maker{display:grid;grid-template-columns:84px 1fr;gap:14px;align-items:start}
+.maker > div{min-width:0}
+#preview{width:64px;height:126px;padding:6px 10px;image-rendering:pixelated;background:#efe4d4;border-radius:12px;border:2px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:2px solid var(--line);background:#fff;border-radius:999px;padding:5px 10px;font:inherit;font-size:13px;cursor:pointer;color:var(--ink)}
+.chip[aria-pressed="true"]{border-color:var(--wine);background:var(--blush)}
+.sw{width:28px;height:28px;border-radius:8px;border:2px solid #fff;outline:2px solid var(--line);cursor:pointer;padding:0}
+.sw[aria-pressed="true"]{outline:3px solid var(--wine)}
+.primary{width:100%;font-family:var(--pixel);font-size:17px;background:var(--wine);color:var(--ivory);border:0;border-radius:12px;padding:14px;cursor:pointer;margin-top:4px}
+.primary:disabled{opacity:.5}
+.note{font-size:12px;color:#7a6168;margin-top:8px;line-height:1.5}
+.list{display:flex;flex-direction:column;gap:10px}
+.card2{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center;background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px}
+.card2 canvas{width:40px;height:79px;padding:4px 6px;image-rendering:pixelated;background:#efe4d4;border-radius:8px}
+.card2 b{font-family:var(--pixel);font-size:15px;color:var(--wine)}
+.card2 p{margin:4px 0 0;font-size:14px;line-height:1.5;word-break:keep-all;overflow-wrap:anywhere}
+.info dl{display:grid;grid-template-columns:64px 1fr;gap:8px 12px;margin:0;font-size:15px}
+.info dt{font-weight:700;color:var(--wine)}
+.info dd{margin:0}
+.empty{font-size:14px;color:#7a6168;text-align:center;padding:16px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--ivory);padding:10px 16px;border-radius:10px;font-size:14px;z-index:30;max-width:calc(100% - 32px);box-sizing:border-box;text-align:center}
+</style>
+</head><body class="intro-on">
+
+<canvas id="stage" aria-label="픽셀 예식장. 신랑 신부가 입장한 뒤, 하객 캐릭터를 누르면 축하 메시지를 볼 수 있어요"></canvas>
+<div class="top"><span class="badge">민준 ♥ 서연 · 2026.11.21 SAT</span></div>
+<div class="card" id="card" aria-live="polite"><p class="date">2026. 11. 21. SAT 오후 1시</p><h1>민준 <span>♥</span> 서연</h1><p>저희 결혼합니다</p></div>
+<button class="skip" id="bSkip">건너뛰기 ›</button>
+
+<div class="fab" id="fab">
+  <button class="item" id="bMake">📷 캐릭터 만들기</button>
+  <button class="item" id="bList">📖 방명록 목록</button>
+  <button class="item" id="bInfo">💒 예식 안내</button>
+  <button class="toggle" id="bFab" aria-label="메뉴 열기">☰</button>
+</div>
+
+<div class="sheet" id="sMake" hidden><div class="panel">
+  <h2>캐릭터 만들기 <button class="x" data-close aria-label="닫기">✕</button></h2>
+  <div class="maker">
+    <canvas id="preview" width="32" height="63"></canvas>
+    <div>
+      <div class="row"><span class="lbl">기본</span><div class="chips" id="cBase"></div></div>
+      <div class="row"><span class="lbl">머리</span><div class="chips" id="cStyle"></div></div>
+      <div class="row"><span class="lbl">머리색</span><div class="chips" id="cHair"></div></div>
+      <div class="row"><span class="lbl">상의</span><div class="chips" id="cTop2"></div><div class="chips" id="cTop"></div></div>
+      <div class="row"><span class="lbl">하의</span><div class="chips" id="cLegs"></div><div class="chips" id="cBottom"></div></div>
+      <div class="row"><span class="lbl">피부</span><div class="chips" id="cSkin"></div></div>
+    </div>
+  </div>
+  <div class="row"><label for="fName">이름</label><input id="fName" maxlength="8" placeholder="예: 신랑 친구 지훈"></div>
+  <div class="row"><label for="fMsg">축하 메시지</label><textarea id="fMsg" maxlength="60" placeholder="결혼 축하해요!"></textarea></div>
+  <button class="primary" id="bSave">축하 남기기</button>
+  <p class="note" id="saveNote"></p>
+</div></div>
+
+<div class="sheet" id="sList" hidden><div class="panel">
+  <h2>방명록 목록 <button class="x" data-close aria-label="닫기">✕</button></h2>
+  <div class="row"><input id="fSearch" placeholder="🔍 하객 이름으로 검색"></div>
+  <div class="list" id="list"></div>
+</div></div>
+
+<div class="sheet" id="sInfo" hidden><div class="panel info">
+  <h2>예식 안내 <button class="x" data-close aria-label="닫기">✕</button></h2>
+  <dl>
+    <dt>일시</dt><dd>2026년 11월 21일 토요일 오후 1시</dd>
+    <dt>장소</dt><dd>그랜드 웨딩홀 3층 로즈홀 (샘플)</dd>
+    <dt>신랑</dt><dd>김민준</dd>
+    <dt>신부</dt><dd>이서연</dd>
+  </dl>
+  <p class="note">샘플 청첩장이에요. 날짜·장소·이름은 예시입니다.</p>
+</div></div>
+
+<script>
+(()=>{
+/* sprite data: generated from tools/sprites (see README) */
+const SP=__SPRITES__;
+__ENGINE__
+/* ---------- the hall (360x640): entrance doors at the top, flower-arch altar at the bottom ---------- */
+const VW=360,VH=640;
+const AISLE_L=132,AISLE_R=228,DOOR_X=144,DOOR_W=72,DOOR_Y=34,DOOR_B=122;
+const ROWS=[150,212,274,336,398],COLS=[12,54,96,232,274,316];
+const bg=document.createElement('canvas');bg.width=VW;bg.height=VH;
+(function drawHall(){
+  const g=bg.getContext('2d');const P=(x,y,w,h,c)=>{g.fillStyle=c;g.fillRect(x,y,w,h)};
+  // floor
+  for(let y=118;y<VH;y+=20)for(let x=0;x<VW;x+=20)P(x,y,20,20,((x+y)/20)%2?'#efe6da':'#e6d9c8');
+  // back wall
+  P(0,0,VW,124,'#f4ece0');for(let x=0;x<VW;x+=8)P(x,0,2,124,'#efe5d6');
+  P(0,104,VW,18,'#d8c3a6');P(0,104,VW,2,'#c9a24a');P(0,121,VW,2,'#b8a083');
+  // arched windows
+  [24,76,250,302].forEach(x=>{
+    P(x,22,34,70,'#c9a24a');P(x+4,16,26,8,'#c9a24a');P(x+8,12,18,6,'#c9a24a');
+    P(x+3,24,28,66,'#bfe0ef');P(x+7,19,20,6,'#cde8f3');P(x+11,15,12,5,'#cde8f3');
+    P(x+3,62,28,28,'#a7d0e6');P(x+16,15,2,75,'#c9a24a');P(x+3,58,28,3,'#c9a24a');
+    P(x+6,28,3,14,'#ffffff');
+  });
+  // drapes
+  [[116,1],[238,-1]].forEach(([x,d])=>{for(let i=0;i<8;i++)P(d>0?x+i:x-i,4,1,118-i*5,i%2?'#efe4ee':'#ffffff')});
+  // chandeliers
+  [[88,0],[272,0]].forEach(([cx])=>{
+    P(cx-1,0,2,14,'#c9a24a');P(cx-16,14,32,3,'#c9a24a');P(cx-12,17,24,2,'#a8832f');
+    for(let i=0;i<5;i++){P(cx-15+i*7,9,3,5,'#fff');P(cx-15+i*7,6,3,3,'#ffd76a')}
+    P(cx-5,19,10,4,'#c9a24a');P(cx-2,23,4,3,'#ffe9a8');
+  });
+  // carpet (virgin road)
+  P(AISLE_L,DOOR_B,AISLE_R-AISLE_L,VH-DOOR_B,'#a52a39');
+  P(AISLE_L,DOOR_B,4,VH-DOOR_B,'#c9a24a');P(AISLE_R-4,DOOR_B,4,VH-DOOR_B,'#c9a24a');
+  P(AISLE_L+4,DOOR_B,2,VH-DOOR_B,'#8c2230');P(AISLE_R-6,DOOR_B,2,VH-DOOR_B,'#8c2230');
+  for(let y=DOOR_B+14;y<VH;y+=22){P(178,y,4,4,'#c9a24a');P(176,y+1,8,2,'#c9a24a')}
+  // chairs
+  ROWS.forEach(ry=>COLS.forEach(cx=>{
+    const y=ry+38;
+    P(cx+1,y,30,6,'#ffffff');P(cx+1,y+6,30,10,'#f6efe6');P(cx+1,y+16,30,2,'#d8cbbb');
+    P(cx+3,y+18,3,8,'#c9b8a6');P(cx+26,y+18,3,8,'#c9b8a6');P(cx+11,y+1,10,4,'#f2b6c3');P(cx+14,y+2,4,2,'#e8879b');
+  }));
+  // aisle flower stands
+  [180,300,420].forEach(y=>[AISLE_L-10,AISLE_R+4].forEach(x=>{
+    P(x+2,y,3,22,'#c9a24a');P(x-1,y+20,9,3,'#a8832f');
+    P(x-3,y-9,13,10,'#7fae6b');P(x-1,y-11,4,4,'#fff');P(x+5,y-10,4,4,'#f2b6c3');P(x+1,y-6,4,3,'#fff');P(x+6,y-5,3,3,'#f7d3dc');
+  }));
+  // altar stage
+  P(40,560,280,80,'#b98b5c');P(40,560,280,4,'#d8b585');for(let x=40;x<320;x+=20)P(x,564,2,76,'#a97c4f');
+  P(56,552,248,8,'#d8b585');P(72,546,216,6,'#e6c99c');
+  // flower arch (behind the couple)
+  for(let a=0;a<=Math.PI;a+=0.045){
+    const x=180+Math.cos(a)*86,y=560-Math.sin(a)*96;
+    P(x-5,y-5,10,10,'#7fae6b');
+    const c=['#ffffff','#f2b6c3','#ffffff','#f7d3dc','#e8879b'][Math.round(a*22)%5];
+    P(x-3,y-3,6,6,c);P(x-1,y-1,2,2,'#ffe39a');
+  }
+  P(92,474,6,86,'#e9dfd3');P(262,474,6,86,'#e9dfd3');
+  [[52,530],[284,530]].forEach(([x,y])=>{P(x,y,24,22,'#c9a24a');P(x+2,y+2,20,2,'#e6c99c');
+    for(let i=0;i<24;i+=6)P(x+i,y-8,6,8,i%12?'#f2b6c3':'#fff');P(x,y-10,24,2,'#7fae6b');});
+})();
+// doors are drawn every frame so they can swing open
+function drawDoors(g,p){
+  const P=(x,y,w,h,c)=>{g.fillStyle=c;g.fillRect(x,y,w,h)};
+  P(DOOR_X-8,DOOR_Y-8,DOOR_W+16,DOOR_B-DOOR_Y+8,'#c9a24a');P(DOOR_X-4,DOOR_Y-12,DOOR_W+8,6,'#c9a24a');
+  P(DOOR_X,DOOR_Y,DOOR_W,DOOR_B-DOOR_Y,'#fff4d6');P(DOOR_X+8,DOOR_Y+8,DOOR_W-16,DOOR_B-DOOR_Y-8,'#fffaf0');
+  const half=DOOR_W/2,w=Math.round(half*(1-p));
+  if(w<=0)return;
+  [[DOOR_X,1],[DOOR_X+DOOR_W-w,-1]].forEach(([x,side])=>{
+    P(x,DOOR_Y,w,DOOR_B-DOOR_Y,'#8a5a3c');
+    if(w>8){P(x+4,DOOR_Y+6,w-8,30,'#9c6a48');P(x+4,DOOR_Y+42,w-8,38,'#9c6a48');}
+    P(side>0?x+w-2:x,DOOR_Y,2,DOOR_B-DOOR_Y,'#5e3b26');
+    if(w>6)P(side>0?x+w-6:x+3,DOOR_Y+46,3,6,'#c9a24a');
+  });
+}
+
+/* ---------- people ---------- */
+const NAMES=['지훈','수빈','태윤','하은','도현','예린','준서','민지','현우','유나','동건','소희','재민','다은'];
+const MSGS=['결혼 축하해!!','행복하게 잘 살아~','축하합니다 🎉','오늘 너무 예쁘다','둘이 잘 어울려요','신혼여행 사진 꼭 보여줘','평생 행복하세요','축하축하!!'];
+const rnd=a=>a[Math.floor(Math.random()*a.length)];
+function randomLook(){
+  const base=Math.random()<.5?'m':'f';
+  return{base,style:rnd(STYLES[base])[0],hair:Math.random()<.6?HAIR[0]:rnd(HAIR),top2:rnd(TOPTYPES[base])[0],top:rnd(TOPS),
+    legs:base==='f'&&Math.random()<.7?'skirt':'pants',bottom:rnd(BOTS),skin:rnd(SKIN)};
+}
+const seats=[];ROWS.forEach(ry=>COLS.forEach(cx=>seats.push({x:cx,y:ry,used:false})));
+function takeSeat(){const free=seats.filter(s=>!s.used);if(!free.length)return null;const s=rnd(free);s.used=true;return s}
+function walker(entry,demo){
+  const s=takeSeat();
+  return{...entry,demo,x:s?s.x:Math.random()*320,y:s?s.y:140+Math.random()*340,tx:0,ty:0,wait:60+Math.random()*400,t:0,bubble:0,clap:0};
+}
+const couple=[
+  {name:'민준',who:'groom',x:148,y:57,fx:148,fy:494,demo:true},
+  {name:'서연',who:'bride',x:177,y:56,fx:177,fy:493,demo:true},
+];
+let demo=NAMES.map(n=>walker({name:n,msg:rnd(MSGS),look:randomLook()},true));
+let real=[];
+const walkers=()=>real.length?real.concat(demo.slice(0,Math.max(0,12-real.length))):demo;
+
+function tick(w){
+  if(w.wait>0){w.wait--;w.moving=false;if(!w.bubble&&Math.random()<0.0012)w.bubble=220;return}
+  if(!w.tx){w.tx=4+Math.random()*322;w.ty=136+Math.random()*350;}
+  const dx=w.tx-w.x,dy=w.ty-w.y,d=Math.hypot(dx,dy);
+  if(d<1){w.tx=0;w.wait=80+Math.random()*300;w.moving=false;return}
+  w.x+=dx/d*0.45;w.y+=dy/d*0.45;w.t++;w.moving=true;
+}
+
+/* ---------- intro: doors open, the couple walks down the aisle ---------- */
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const T_DOOR=700,T_OPEN=1500,T_WALK=8200,T_CARD=600;
+let intro={on:!reduce,t0:performance.now(),arrived:reduce,done:reduce};
+const hearts=[];
+function finishIntro(){
+  if(intro.done)return;
+  intro.done=true;intro.on=false;intro.arrived=true;
+  couple.forEach(c=>{c.x=c.fx;c.y=c.fy;c.moving=false});walkers().forEach(w=>w.clap=0);
+  document.body.classList.remove('intro-on');$('bSkip').remove();
+  $('card').classList.add('show');setTimeout(()=>$('card').classList.remove('show'),2600);
+  setTimeout(()=>toast('☰ 메뉴에서 캐릭터를 만들어 축하를 남겨 주세요'),3000);
+  for(let i=0;i<14;i++)hearts.push({x:196+(Math.random()-.5)*50,y:500+Math.random()*20,v:.35+Math.random()*.5,life:140+Math.random()*80,p:Math.random()*6});
+}
+function introStep(now){
+  const t=now-intro.t0;
+  const door=Math.max(0,Math.min(1,(t-T_DOOR)/(T_OPEN-T_DOOR)));
+  const k=Math.max(0,Math.min(1,(t-T_OPEN)/T_WALK));
+  couple.forEach(c=>{c.y=Math.round(c.fy-(c.fy-(c.who==='groom'?57:56))*(1-k));c.moving=k>0&&k<1;c.t=t});
+  // guests clap as the couple passes their row
+  walkers().forEach(w=>{w.clap=k>0&&Math.abs(w.y-couple[0].y)<90?((t/180|0)+(w.x|0))%2:0});
+  if(k>=1&&!intro.arrived){intro.arrived=true;setTimeout(finishIntro,T_CARD)}
+  return door;
+}
+
+/* ---------- render ---------- */
+const cv=document.getElementById('stage'),ctx=cv.getContext('2d');
+const scene=document.createElement('canvas');scene.width=VW;scene.height=VH;const sg=scene.getContext('2d');
+let S=1,OX=0,OY=0,DPR=1;
+function resize(){
+  DPR=Math.min(window.devicePixelRatio||1,3);
+  const w=cv.clientWidth,h=cv.clientHeight;cv.width=Math.round(w*DPR);cv.height=Math.round(h*DPR);
+  // whole device pixels per scene pixel keeps every dot the same size
+  let dev=Math.floor(Math.min(w*DPR/VW,h*DPR/VH));
+  if(dev<1)dev=Math.min(w*DPR/VW,h*DPR/VH);
+  S=dev/DPR;
+  OX=Math.round((w*DPR-VW*dev)/2)/DPR;OY=Math.round((h*DPR-VH*dev)/2)/DPR;
+}
+window.addEventListener('resize',resize);resize();
+const petals=Array.from({length:70},()=>({x:Math.random()*VW,y:Math.random()*VH,v:.25+Math.random()*.45,p:Math.random()*6}));
+const HEART=['.O.O.','OOOOO','OOOOO','.OOO.','..O..'];
+
+function frame(now){
+  const list=walkers();
+  let door=1;
+  if(intro.on)door=introStep(now);
+  else if(!reduce)list.forEach(tick);
+  sg.drawImage(bg,0,0);drawDoors(sg,door);
+  const showCouple=!intro.on||door>.55;   // they step out once the doors are half open
+  const people=[...(showCouple?couple:[]).map(c=>({...c,sp:spriteOf(c.who)})),...list.map(w=>({...w,sp:spriteOf(w.look),ref:w}))];
+  people.sort((a,b)=>(a.y+a.sp.h)-(b.y+b.sp.h));
+  people.forEach(p=>{
+    const f=p.moving?((p.who?p.t/160:p.t/9)|0)%4:0;
+    drawSprite(sg,p.sp,Math.round(p.x),Math.round(p.y)-(p.clap?1:0),f);
+  });
+  const petalN=intro.on?70:26;
+  if(!reduce)for(let i=0;i<petalN;i++){const p=petals[i];p.y+=p.v;p.p+=.03;if(p.y>VH){p.y=-2;p.x=Math.random()*VW}
+    sg.fillStyle=p.p%2>1?'#f7c6d2':'#ffffff';sg.fillRect(Math.round(p.x+Math.sin(p.p)*4),Math.round(p.y),2,2);}
+  for(let i=hearts.length-1;i>=0;i--){const h=hearts[i];h.y-=h.v;h.p+=.05;h.life--;
+    if(h.life<=0){hearts.splice(i,1);continue}
+    sg.globalAlpha=Math.min(1,h.life/40);sg.fillStyle=i%3?'#e8566b':'#f7a1a8';
+    HEART.forEach((r,y)=>{for(let x=0;x<5;x++)if(r[x]==='O')sg.fillRect(Math.round(h.x+Math.sin(h.p)*6)+x,Math.round(h.y)+y,1,1)});
+    sg.globalAlpha=1;}
+
+  ctx.setTransform(DPR,0,0,DPR,0,0);ctx.imageSmoothingEnabled=false;
+  ctx.fillStyle='#2a1a20';ctx.fillRect(0,0,cv.width,cv.height);
+  ctx.drawImage(scene,OX,OY,VW*S,VH*S);
+  // name labels
+  ctx.textAlign='center';ctx.textBaseline='top';
+  const fs=Math.max(10,Math.round(S*9));ctx.font=`${fs}px DotGothic16, "Gowun Dodum", sans-serif`;
+  people.forEach(p=>{
+    if(intro.on&&!p.who)return;
+    const sx=OX+(p.x+p.sp.axis)*S,sy=OY+(p.y+p.sp.h)*S+1;
+    ctx.lineWidth=3;ctx.strokeStyle='#2a1a20';ctx.strokeText(p.name,sx,sy);
+    ctx.fillStyle=p.who?'#ffd6de':p.demo?'#f4ece0':'#fff3a8';ctx.fillText(p.name,sx,sy);
+  });
+  list.forEach(w=>{
+    if(!w.bubble)return;w.bubble--;
+    const t=w.msg.length>14?w.msg.slice(0,14)+'…':w.msg;
+    const tw=ctx.measureText(t).width+16,bx=Math.min(Math.max(OX+(w.x+16)*S,tw/2+6),cv.clientWidth-tw/2-6),by=OY+w.y*S-fs-14;
+    ctx.fillStyle='#fff';ctx.strokeStyle='#2a1a20';ctx.lineWidth=2;
+    ctx.beginPath();ctx.roundRect(bx-tw/2,by,tw,fs+10,4);ctx.fill();ctx.stroke();
+    ctx.fillStyle='#2a1a20';ctx.fillText(t,bx,by+5);
+  });
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+cv.addEventListener('click',e=>{
+  if(intro.on){finishIntro();return}
+  const r=cv.getBoundingClientRect(),px=(e.clientX-r.left-OX)/S,py=(e.clientY-r.top-OY)/S;
+  const hit=walkers().filter(w=>px>=w.x&&px<=w.x+SW&&py>=w.y&&py<=w.y+SH).sort((a,b)=>b.y-a.y)[0];
+  if(hit){hit.bubble=260;hit.wait=Math.max(hit.wait,200);}
+});
+
+/* ---------- UI ---------- */
+const $=id=>document.getElementById(id);
+$('bSkip').onclick=e=>{e.stopPropagation();finishIntro()};
+if(reduce){document.body.classList.remove('intro-on');$('bSkip').remove();couple.forEach(c=>{c.x=c.fx;c.y=c.fy})}
+const fab=$('fab');
+$('bFab').onclick=()=>{fab.classList.toggle('open');$('bFab').textContent=fab.classList.contains('open')?'✕':'☰'};
+const open=id=>{$(id).hidden=false;fab.classList.remove('open');$('bFab').textContent='☰'};
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>b.closest('.sheet').hidden=true);
+document.querySelectorAll('.sheet').forEach(s=>s.addEventListener('click',e=>{if(e.target===s)s.hidden=true}));
+$('bInfo').onclick=()=>open('sInfo');
+$('bList').onclick=()=>{renderList();open('sList')};
+$('bMake').onclick=()=>{renderMaker();open('sMake')};
+
+const look=normLook(randomLook());
+function chips(el,items,key,swatch){
+  el.innerHTML='';
+  items.forEach(it=>{
+    const v=Array.isArray(it)?it[0]:it,b=document.createElement('button');
+    b.type='button';b.className=swatch?'sw':'chip';b.setAttribute('aria-pressed',look[key]===v);
+    if(swatch){b.style.background=v;b.setAttribute('aria-label',key+' '+v)}else b.textContent=it[1];
+    b.onclick=()=>{look[key]=v;if(key==='base')Object.assign(look,normLook({...look,style:null,top2:null,legs:v==='f'?'skirt':'pants'}));renderMaker()};
+    el.appendChild(b);
+  });
+}
+function renderMaker(){
+  chips($('cBase'),[['m','남자'],['f','여자']],'base');
+  chips($('cStyle'),STYLES[look.base],'style');chips($('cHair'),HAIR,'hair',1);
+  chips($('cTop2'),TOPTYPES[look.base],'top2');chips($('cTop'),TOPS,'top',1);
+  chips($('cLegs'),LEGS,'legs');chips($('cBottom'),BOTS,'bottom',1);chips($('cSkin'),SKIN,'skin',1);
+  mini($('preview'),look);
+}
+function mini(c,L){const g=c.getContext('2d');g.clearRect(0,0,c.width,c.height);g.drawImage(spriteOf(L).cv,0,0)}
+
+function renderList(){
+  const q=$('fSearch').value.trim(),el=$('list');el.innerHTML='';
+  const items=[...real].sort((a,b)=>(b.ts||0)-(a.ts||0)).filter(w=>!q||w.name.includes(q));
+  if(!items.length){el.innerHTML='<div class="empty">'+(q?'검색 결과가 없어요.':'아직 방명록이 없어요. 캐릭터를 만들어 첫 축하를 남겨 보세요. 지금 돌아다니는 하객들은 샘플이에요.')+'</div>';return}
+  items.forEach(w=>{
+    const card=document.createElement('div');card.className='card2';
+    const c=document.createElement('canvas');c.width=SW;c.height=SH;mini(c,w.look);
+    const d=document.createElement('div');const b=document.createElement('b');b.textContent=w.name;
+    const p=document.createElement('p');p.textContent='"'+w.msg+'"';d.append(b,p);card.append(c,d);el.appendChild(card);
+  });
+}
+$('fSearch').addEventListener('input',renderList);
+
+function toast(t){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2800)}
+
+/* ---------- storage: Supabase (shared) when configured, this device otherwise ---------- */
+// ▼ Supabase 프로젝트 만든 뒤 여기 두 줄만 채우면 모든 하객이 방명록을 공유해요 (README 참고)
+const SUPABASE_URL='';      // 예: https://abcd1234.supabase.co
+const SUPABASE_KEY='';      // Project Settings → API → anon public key
+const LS='pw-guests';
+const remote=!!(SUPABASE_URL&&SUPABASE_KEY);
+const HDR={apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,'Content-Type':'application/json'};
+function setReal(arr){
+  const old=new Map(real.map(w=>[w.id,w]));
+  real.forEach(w=>{if(!arr.some(e=>e.id===w.id))seats.forEach(s=>{if(s.x===w.x&&s.y===w.y)s.used=false})});
+  real=arr.map(e=>old.get(e.id)?Object.assign(old.get(e.id),e):walker(e,false));
+  if(!$('sList').hidden)renderList();
+}
+function loadLocal(){try{setReal(JSON.parse(localStorage.getItem(LS)||'[]'))}catch(e){}}
+async function loadRemote(){
+  try{
+    const r=await fetch(SUPABASE_URL+'/rest/v1/guests?select=id,name,msg,look,ts&order=ts.desc&limit=300',{headers:HDR});
+    if(r.ok)setReal((await r.json()).filter(e=>e.name&&e.look));
+  }catch(e){}
+}
+if(remote){loadRemote();setInterval(loadRemote,15000);$('saveNote').textContent='남긴 캐릭터와 메시지는 모든 하객에게 보여요.';}
+else{loadLocal();$('saveNote').textContent='아직 서버 연결 전이라 이 기기에만 저장돼요.';}
+
+$('bSave').onclick=async()=>{
+  const name=$('fName').value.trim(),msg=$('fMsg').value.trim();
+  if(!name||!msg){toast('이름과 축하 메시지를 모두 적어 주세요.');return}
+  const L=normLook(look);
+  const entry={name:name.slice(0,8),msg:msg.slice(0,60),look:L,ts:Date.now()};
+  $('bSave').disabled=true;
+  try{
+    if(remote){
+      const r=await fetch(SUPABASE_URL+'/rest/v1/guests',{method:'POST',headers:{...HDR,Prefer:'return=minimal'},body:JSON.stringify(entry)});
+      if(!r.ok)throw new Error(r.status);
+      await loadRemote();
+    }else{
+      let arr=[];try{arr=JSON.parse(localStorage.getItem(LS)||'[]')}catch(e){}
+      arr.push({id:'l'+entry.ts,...entry});
+      try{localStorage.setItem(LS,JSON.stringify(arr))}catch(e){}
+      setReal(arr);
+    }
+    $('sMake').hidden=true;$('fName').value='';$('fMsg').value='';
+    const me=real.find(w=>w.ts===entry.ts);if(me){me.x=96;me.y=440;me.wait=240;me.bubble=260}
+    toast('축하를 남겼어요! 예식장에 내 캐릭터가 생겼어요.');
+  }catch(e){toast('저장하지 못했어요. 인터넷 연결을 확인하고 다시 눌러 주세요.')}
+  finally{$('bSave').disabled=false}
+};
+})();
+</script>
+</body></html>
